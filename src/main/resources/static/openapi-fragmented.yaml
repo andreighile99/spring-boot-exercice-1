@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: spring-boot-exercise-1-api
+  description: Spring Boot Exercise 1 API
+  version: 0.0.1-FINAL
+servers:
+    - url: /
+tags:
+  - name: spring-boot-exercise-1
+    description: Spring Boot Exercise 1 API
+
+paths:
+  /v1/tariffs:
+    $ref: "paths/tariff/Tariff.yaml"
+  /v1/tariffs/{id}:
+    $ref: "paths/tariff/TariffById.yaml"
+  /v1/tariffs/{date}/{brand}/{product}:
+    $ref: "paths/tariff/TariffByDateBrandAndProduct.yaml"
+components:
+  schemas:
+    TariffDto:
+      $ref: "schemas/tariff/TariffDto.yaml"
+    CreateTariffRequest:
+      $ref: "schemas/tariff/CreateTariffRequest.yaml"
+    UpdateTariffRequest:
+      $ref: "schemas/tariff/UpdateTariffPriceByIdRequest.yaml"
+    CurrencyDto:
+      $ref: "schemas/currency/CurrencyDto.yaml"
+    Error:
+      $ref: "schemas/error/Error.yaml"

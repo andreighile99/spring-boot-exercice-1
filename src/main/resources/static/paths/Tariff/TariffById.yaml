@@ -1,0 +1,47 @@
+get:
+  tags:
+    - Tariff
+  description: Search a tariff by ID
+  operationId: getTariffById
+  parameters:
+    - name: id
+      in: path
+      description: ID of the tariff to get
+      required: true
+      schema:
+          type: integer
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: "../../schemas/tariff/TariffDto.yaml"
+delete:
+  tags:
+    - Tariff
+  description: Delete a tariff
+  operationId: deleteTariff
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+        description: Tariff ID
+      required: true
+  responses:
+    200:
+      description: Deleted
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"
+    default:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"

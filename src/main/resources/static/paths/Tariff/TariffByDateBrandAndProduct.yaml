@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Tariff
+  description: Search a tariff by date, brand and product
+  operationId: getTariffByDateBrandAndProduct
+  parameters:
+    - in: path
+      name: date
+      schema:
+        type: string
+        format: date-time
+      required: true
+      description: Date of the tariff
+    - in: path
+      name: brand
+      schema:
+        type: integer
+      required: true
+      description: Brand of the tariff
+    - in: path
+      name: product
+      schema:
+          type: integer
+      required: true
+      description: Product of the tariff
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: "../../schemas/tariff/TariffDto.yaml"

@@ -1,0 +1,60 @@
+put:
+  tags:
+    - Tariff
+  description: Update a tariff's price given its ID
+  operationId: updateTariffPriceById
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/tariff/UpdateTariffPriceByIdRequest.yaml"
+  responses:
+    200:
+      description: Updated
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/tariff/TariffDto.yaml"
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"
+    default:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"
+post:
+  tags:
+    - Tariff
+  description: Create a new tariff
+  operationId: createTariff
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/tariff/CreateTariffRequest.yaml"
+  responses:
+    201:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/tariff/TariffDto.yaml"
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"
+    default:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/error/Error.yaml"

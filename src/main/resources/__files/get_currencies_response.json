@@ -1,0 +1,17 @@
+[
+  {
+    "symbol": "€",
+    "code": "EUR",
+    "decimals": 2
+  },
+  {
+    "symbol": "$",
+    "code": "USD",
+    "decimals": 2
+  },
+  {
+    "symbol": "¥",
+    "code": "JPY",
+    "decimals": 0
+  }
+]

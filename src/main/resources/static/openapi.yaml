@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  description: Spring Boot Exercise 1 API
+  title: spring-boot-exercise-1-api
+  version: 0.0.1-SNAPSHOT
+servers:
+- url: /
+tags:
+- description: Spring Boot Exercise 1 API
+  name: spring-boot-exercise-1
+paths:
+  /v1/tariffs:
+    get:
+      description: Get all tariffs
+      operationId: getAllTariffs
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TariffDto'
+                type: array
+          description: OK
+      tags:
+      - Tariff
+    post:
+      description: Create a new tariff
+      operationId: createTariff
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTariffRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TariffDto'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Error
+      tags:
+      - Tariff
+    put:
+      description: Update a tariff's price given its ID
+      operationId: updateTariffPriceById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTariffPriceByIdRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TariffDto'
+          description: Updated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Error
+      tags:
+      - Tariff
+  /v1/tariffs/{id}:
+    delete:
+      description: Delete a tariff
+      operationId: deleteTariff
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: Tariff ID
+          type: integer
+      responses:
+        "200":
+          description: Deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Error
+      tags:
+      - Tariff
+    get:
+      description: Search a tariff by ID
+      operationId: getTariffById
+      parameters:
+      - description: ID of the tariff to get
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TariffDto'
+          description: OK
+      tags:
+      - Tariff
+  /v1/tariffs/{date}/{brand}/{product}:
+    get:
+      description: "Search a tariff by date, brand and product"
+      operationId: getTariffByDateBrandAndProduct
+      parameters:
+      - description: Date of the tariff
+        in: path
+        name: date
+        required: true
+        schema:
+          format: date-time
+          type: string
+      - description: Brand of the tariff
+        in: path
+        name: brand
+        required: true
+        schema:
+          type: integer
+      - description: Product of the tariff
+        in: path
+        name: product
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TariffDto'
+          description: OK
+      tags:
+      - Tariff
+components:
+  schemas:
+    TariffDto:
+      example:
+        productId: 1
+        currencyDecimals: 5
+        endDate: 2000-01-23T04:56:07.000+00:00
+        price: 5.962133916683182
+        brandId: 6
+        currencySymbol: currencySymbol
+        id: 0
+        currencyCode: currencyCode
+        startDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Tariff ID
+          type: integer
+        brandId:
+          description: Brand ID
+          type: integer
+        productId:
+          description: Product ID
+          type: integer
+        startDate:
+          description: Start date
+          format: date-time
+          type: string
+        endDate:
+          description: End date
+          format: date-time
+          type: string
+        price:
+          description: Price
+          type: number
+        currencyCode:
+          description: Currency code
+          type: string
+        currencySymbol:
+          description: Currency symbol
+          type: string
+        currencyDecimals:
+          description: Currency decimals
+          type: integer
+      type: object
+    CreateTariffRequest:
+      example:
+        productId: 6
+        endDate: 2000-01-23T04:56:07.000+00:00
+        price: 1.4658129805029452
+        brandId: 0
+        currencyCode: currencyCode
+        startDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        brandId:
+          description: Brand ID
+          type: integer
+        productId:
+          description: Product ID
+          type: integer
+        startDate:
+          description: Start date
+          format: date-time
+          type: string
+        endDate:
+          description: End date
+          format: date-time
+          type: string
+        price:
+          description: Price
+          type: number
+        currencyCode:
+          description: Currency code
+          type: string
+      required:
+      - brandId
+      - currencyCode
+      - endDate
+      - price
+      - productId
+      - startDate
+      type: object
+    UpdateTariffRequest:
+      example:
+        price: 6.027456183070403
+        id: 0
+      properties:
+        id:
+          description: Tariff ID
+          type: integer
+        price:
+          description: Price
+          type: number
+      required:
+      - id
+      type: object
+    CurrencyDto:
+      properties:
+        symbol:
+          description: Currency symbol
+          type: string
+        code:
+          description: Currency code
+          type: string
+        decimals:
+          description: Number of decimals
+          type: integer
+      type: object
+    Error:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    UpdateTariffPriceByIdRequest:
+      example:
+        price: 6.027456183070403
+        id: 0
+      properties:
+        id:
+          description: Tariff ID
+          type: integer
+        price:
+          description: Price
+          type: number
+      required:
+      - id
+      type: object

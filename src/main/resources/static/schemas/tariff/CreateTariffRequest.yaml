@@ -1,0 +1,29 @@
+type: object
+required:
+  - brandId
+  - productId
+  - startDate
+  - endDate
+  - price
+  - currencyCode
+properties:
+  brandId:
+    type: integer
+    description: Brand ID
+  productId:
+    type: integer
+    description: Product ID
+  startDate:
+    type: string
+    format: date-time
+    description: Start date
+  endDate:
+    type: string
+    format: date-time
+    description: End date
+  price:
+    type: number
+    description: Price
+  currencyCode:
+    type: string
+    description: Currency code

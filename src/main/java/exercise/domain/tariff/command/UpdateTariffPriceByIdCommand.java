@@ -1,0 +1,15 @@
+package exercise.domain.tariff.command;
+
+import lombok.Builder;
+import lombok.Value;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.OffsetDateTime;
+
+@Builder
+@Value
+public class UpdateTariffPriceByIdCommand {
+    BigInteger id;
+    BigDecimal price;
+}

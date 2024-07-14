@@ -1,0 +1,11 @@
+type: object
+properties:
+  symbol:
+    type: string
+    description: Currency symbol
+  code:
+    type: string
+    description: Currency code
+  decimals:
+    type: integer
+    description: Number of decimals

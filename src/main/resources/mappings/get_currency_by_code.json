@@ -1,0 +1,34 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/currencies/EUR"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "EUR.json"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/currencies/USD"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "USD.json"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/currencies/JPY"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "JPY.json"
+      }
+    }
+  ]
+}
